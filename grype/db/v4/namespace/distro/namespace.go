@@ -21,7 +21,7 @@ type Namespace struct {
 func NewNamespace(provider string, distroType distro.Type, version string) *Namespace {
 	return &Namespace{
 		provider:      provider,
-		namespaceType: namespace.Language,
+		namespaceType: namespace.Distro,
 		distroType:    distroType,
 		version:       version,
 		resolver:      &stock.Resolver{},

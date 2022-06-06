@@ -1,6 +1,7 @@
 package distro
 
 import (
+	"github.com/anchore/grype/grype/db/v4/namespace"
 	grypeDistro "github.com/anchore/grype/grype/distro"
 	"github.com/stretchr/testify/assert"
 	"testing"
@@ -32,6 +33,7 @@ func TestFromString(t *testing.T) {
 	for _, test := range successTests {
 		result, _ := FromString(test.namespaceString)
 		assert.Equal(t, result, test.result)
+		assert.Equal(t, result.Type(), namespace.Distro)
 	}
 
 	errorTests := []struct {

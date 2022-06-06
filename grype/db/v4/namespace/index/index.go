@@ -21,7 +21,7 @@ type Index struct {
 }
 
 func FromStringSlice(namespaces []string) (*Index, error) {
-	all := make([]namespace.Namespace, len(namespaces))
+	all := make([]namespace.Namespace, 0)
 	byLanguage := make(map[syftPkg.Language][]*language.Namespace)
 	byDistroKey := make(map[string][]*distro.Namespace)
 	cpeNamespaces := make([]*cpe.Namespace, 0)
@@ -90,7 +90,6 @@ func (i *Index) NamespacesForDistro(d *grypeDistro.Distro) []*distro.Namespace {
 
 	if len(versionSegments) > 0 {
 		// First attempt a direct match on distro full name and version
-
 		distroKey := fmt.Sprintf("%s:%s", strings.ToLower(d.Type.String()), d.FullVersion())
 
 		if v, ok := i.byDistroKey[distroKey]; ok {
